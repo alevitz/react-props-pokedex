@@ -16,13 +16,30 @@ function Pokegame(props) {
   let hand1 = pokeArr.slice(0,4);
   let hand2 = pokeArr.slice(4);
 
-  // let total_exp_hand1 = hand1.forEach()
+  let total_exp_hand1 = 0;
+  let total_exp_hand2 = 0;
+
+  for(let p of hand1){
+    total_exp_hand1 += p.base_experience;
+  }
+  for(let p of hand2){
+    total_exp_hand2 += p.base_experience;
+  }
+
   
+
   return (
+    total_exp_hand1 > total_exp_hand2 ? 
     <div>
-    <Pokedex pokemon={hand1}/>
-    <Pokedex pokemon={hand2}/>
+    <Pokedex pokemon={hand1} total_exp={total_exp_hand1} isWinner={true}/>
+    <Pokedex pokemon={hand2} total_exp={total_exp_hand2}/>
     </div>
+    :
+    <div>
+    <Pokedex pokemon={hand1} total_exp={total_exp_hand1}/>
+    <Pokedex pokemon={hand2} total_exp={total_exp_hand2} isWinner={true}/>
+    </div>
+    
   );
 }
 
